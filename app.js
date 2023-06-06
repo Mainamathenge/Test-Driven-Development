@@ -2,4 +2,10 @@ const express = require('express');
 
 const app = express();
 
-app.listen(3000, () => console.log("Application is now running"));
+app.post('/api/1.0/users', (req, res) => {
+  return res.send({ message: 'User Created' });
+});
+
+//app.listen(3000, () => console.log('Application is now running'));
+
+module.exports = app;
