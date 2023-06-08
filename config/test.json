@@ -3,7 +3,7 @@
     "database": "hoaxify",
     "username": "my-db-user",
     "password": "db-pass",
-    "storage": "./test.sqlite",
+    "storage": ":memory:",
     "dialect": "sqlite",
     "logging": false
   }

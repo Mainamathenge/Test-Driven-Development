@@ -10,14 +10,14 @@ beforeAll(() => {
 beforeEach(() => {
   return User.destroy({ truncate: true });
 });
-
-describe('User Registration', () => {
   const postValidUser = () => {
     return request(app).post('/api/1.0/users').send({
       username: 'user1',
       email: 'user1@gmail.com',
       password: 'password',
     });
+describe('User Registration', () => {
+
   };
   it('returns 200 ok when signup request is valid', async () => {
     const response = await postValidUser();
@@ -46,5 +46,13 @@ describe('User Registration', () => {
     const userList = await User.findAll();
     const savedUser = userList[0];
     expect(savedUser.password).not.toBe('password');
+  });
+  it('returns 400 when username is null', async () => {
+    const response = request(app).post('/api/1.0/users').send({
+      username: null,
+      email: 'user1@gmail.com',
+      password: 'password',
+    });
+    expect(response.status).toBe(400);
   });
 });
